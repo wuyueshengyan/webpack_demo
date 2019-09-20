@@ -17,7 +17,9 @@ module.exports = {
     },
     // production 产品阶段，打包后会压缩混淆代码
     // development 开发阶段，打包
-    mode: 'development'
+    mode: 'development',
+    // 开启监视模式，此时执行webpack指令进行打包回监视文件的变化自动打包
+    watch: true
 }
 
 // npx webpack -- cpnfig 指定你要用的自定义的配置文件

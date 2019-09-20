@@ -1,16 +1,18 @@
 {
-  "name": "wepack",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8"
-  }
+    "name": "wepack",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack --config webpack.custom.config.js",
+        "watch": "webpack --watch"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "webpack": "^4.39.3",
+        "webpack-cli": "^3.3.8"
+    }
 }

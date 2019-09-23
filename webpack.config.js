@@ -29,7 +29,7 @@ module.exports = {
     }
 }
 
-// npx webpack -- cpnfig 指定你要用的自定义的配置文件 你好
+// npx webpack -- cpnfig 指定你要用的自定义的配置文件
 // 我们可以在packge.json文件里面的script里面新建自定义的指令
 // "scripts": {
 //     "test": "echo \"Error: no test specified\" && exit 1"

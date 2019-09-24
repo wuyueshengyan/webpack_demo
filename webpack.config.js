@@ -63,7 +63,10 @@ module.exports = {
 // 插件就是一个构造函数，一个平级节点plugins，在webpack里面所有带s的都是一个数组
 // plugins: [
 //     new HtmlWebpackPlugin({
+// HTML打包的名字,在内存中生成一个HTML
 //         filename: 'index.html',
-//         template: 'template.html'
+
+//         template: './src/index.html'
 //     })
 // ]
+// html的插件的作用就是根据一个模板来生成一个HTML文件，自动引入band.js，打包的时候可以生成HTML和js

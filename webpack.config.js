@@ -70,3 +70,6 @@ module.exports = {
 //     })
 // ]
 // html的插件的作用就是根据一个模板来生成一个HTML文件，自动引入band.js，打包的时候可以生成HTML和js
+// 1.DevServer时根据模板在express项目根目录下生成HTML文件（类似DevServer生成内存中的bundle.js
+// 2.DevServer时自动引入bundle.js
+// 3.打包时会自动生成index.html

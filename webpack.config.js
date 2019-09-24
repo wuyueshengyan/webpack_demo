@@ -50,3 +50,20 @@ module.exports = {
 // --compress 开启代码压缩
 
 // 还可以直接在webpack.config.js里面加这些方法，新增节点
+
+
+// html插件加上dev-server如虎添翼
+// 所有的插件用法都是一样 
+// 1.安装html-webpack-plugin插件 npm i html-webpack-plugin -D
+// 在webpack.config.js中的plugins节点下配置
+
+// 倒进来
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+// 插件就是一个构造函数，一个平级节点plugins，在webpack里面所有带s的都是一个数组
+// plugins: [
+//     new HtmlWebpackPlugin({
+//         filename: 'index.html',
+//         template: 'template.html'
+//     })
+// ]

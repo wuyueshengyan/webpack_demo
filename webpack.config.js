@@ -78,3 +78,6 @@ module.exports = {
 // webpack-dev-middleware要你自定义一个服务器，dev-server是别人给你定义好了一个服务器，webpack-dev-middleware有更多的自主性。和操作空间
 
 // 注意，如果使用middleware，必须使用html-webpack-plugin插件，否则html文件无法正确输出到express服务器的根目录
+
+// 只有在开发时才需要使用自动编译工具
+// 项目上线时都会直接使用webpack进行打包构建，不需要使用这些自动编译工具

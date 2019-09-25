@@ -73,3 +73,8 @@ module.exports = {
 // 1.DevServer时根据模板在express项目根目录下生成HTML文件（类似DevServer生成内存中的bundle.js
 // 2.DevServer时自动引入bundle.js
 // 3.打包时会自动生成index.html
+
+
+// webpack-dev-middleware要你自定义一个服务器，dev-server是别人给你定义好了一个服务器，webpack-dev-middleware有更多的自主性。和操作空间
+
+// 注意，如果使用middleware，必须使用html-webpack-plugin插件，否则html文件无法正确输出到express服务器的根目录

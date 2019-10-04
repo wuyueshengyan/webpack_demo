@@ -15,6 +15,7 @@ module.exports = {
         path: path.resolve('./dist/'),
         filename: 'bundle.js'
     },
+    // 打包
     // production 产品阶段，打包后会压缩混淆代码
     // development 开发阶段，打包
     mode: 'development',
@@ -26,6 +27,25 @@ module.exports = {
         compress: true,
         hot: true,
         contentBase: './src'
+    },
+    // loder的配置
+    modul: {
+        // rules是规则的意思
+        rules: [{
+            test: /\.css$/,
+            // webpack读取loader时 ， 是从右到左的读取,会将css文件先交给最右侧的loader来处理
+            // loader的执行方式是从右到左以管道的方式链式调用
+            // css-loader,解析css文件
+            // style-loader,将解析出来的结果放到html中,使其生效
+            use: ['style-loader', 'css-loader'],
+        }, {
+            test: /\.less$/,
+            // 先less-loader解析less文件，再css-loader解析css文件。style-loader导入到HTML文件中
+            use: ['style-loader', 'css-loader', 'less-loader']
+        }, {
+            test: /\.s(a|c)ss$/,
+            use: ['style-loader', 'css-loader', 'sass-loader']
+        }]
     }
 }
 

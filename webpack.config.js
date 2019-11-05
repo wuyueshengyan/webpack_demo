@@ -44,7 +44,17 @@ module.exports = {
             use: ['style-loader', 'css-loader', 'less-loader']
         }, {
             test: /\.s(a|c)ss$/,
+            // 编译scss的文件
             use: ['style-loader', 'css-loader', 'sass-loader']
+        }, {
+            test: /\.(jpg | ipeg | png | bmp | gif | woff | woff2 | eot | svg |ttf)$/,
+            // 编译图片，字体图标的编译插件 npm i file-loader -d
+            use: 'file-loader'
+        }, {
+            // 也可以分开写
+            test: /\.(woff | woff2 | eot | svg |ttf)$/,
+            // 编译图片，字体图标的编译插件
+            use: 'file-loader'
         }]
     }
 }

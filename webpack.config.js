@@ -55,9 +55,20 @@ module.exports = {
             test: /\.(woff | woff2 | eot | svg |ttf)$/,
             // 编译图片，字体图标的编译插件
             use: 'file-loader'
+        }, {
+            test: /\.(jpg | ipeg | png | bmp | gif | woff | woff2 | eot | svg |ttf)$/,
+            // 编译图片，字体图标的编译插件 npm i file-loader -d
+            use: {
+                loader: 'url-loader',
+                options: {
+                    limit: 5 * 1024 //如果你的图片小于5kb，就装换为base64
+                }
+            }
         }]
     }
 }
+
+// npm i url-loader url-loader是对'file-loader的包装，然后必须装file-loader 会把图片变成base64格式 还会改变你的名字，生成一个唯一标识
 
 // npx webpack -- cpnfig 指定你要用的自定义的配置文件
 // 我们可以在packge.json文件里面的script里面新建自定义的指令

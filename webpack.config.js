@@ -71,7 +71,7 @@ module.exports = {
 // npm i url-loader url-loader是对'file-loader的包装，然后必须装file-loader 会把图片变成base64格式 还会改变你的名字，生成一个唯一标识
 
 // 自定义图片打包路径
-//  自定义报
+//  
 
 // npx webpack -- cpnfig 指定你要用的自定义的配置文件
 // 我们可以在packge.json文件里面的script里面新建自定义的指令
@@ -115,7 +115,7 @@ module.exports = {
 // ]
 // html的插件的作用就是根据一个模板来生成一个HTML文件，自动引入band.js，打包的时候可以生成HTML和js
 
-插件
+// 插件
 // 1.DevServer时根据模板在express项目根目录下生成HTML文件（类似DevServer生成内存中的bundle.js
 // 2.DevServer时自动引入bundle.js
 // 3.打包时会自动生成index.html

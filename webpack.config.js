@@ -26,7 +26,8 @@ module.exports = {
         port: 3000,
         compress: true,
         hot: true,
-        contentBase: './src'
+        contentBase: './src',
+
     },
     // loder的配置
     modul: {
@@ -61,7 +62,9 @@ module.exports = {
             use: {
                 loader: 'url-loader',
                 options: {
-                    limit: 5 * 1024 //如果你的图片小于5kb，就装换为base64
+                    limit: 5 * 1024, //如果你的图片小于5kb，就装换为base64
+                    outputPath: 'img', //直接输入目录名字，指定输出图片的文件夹 其实是file-loader的功能
+                    name: '[name]-[hash：4].[ext]' //[name]原来的名字 [hash:4] 哈希值为4位  .[ext]原后缀名  其实是file-loader的功能
                 }
             }
         }]

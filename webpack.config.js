@@ -67,6 +67,15 @@ module.exports = {
                     name: '[name]-[hash：4].[ext]' //[name]原来的名字 [hash:4] 哈希值为4位  .[ext]原后缀名  其实是file-loader的功能
                 }
             }
+        }, {
+            text: /\.js$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    presets: ['@babel/env'] //这个必须配置
+
+                }
+            }
         }]
     }
 }

@@ -60,7 +60,7 @@ module.exports = {
             test: /\.(jpg | ipeg | png | bmp | gif | woff | woff2 | eot | svg |ttf)$/,
             // 编译图片，字体图标的编译插件 npm i file-loader -d
             use: {
-                loader: 'url-loader',
+                loader: 'url-loader', //会把你所有的图片打包在同一个目录下
                 options: {
                     limit: 5 * 1024, //如果你的图片小于5kb，就装换为base64
                     outputPath: 'img', //直接输入目录名字，指定输出图片的文件夹 其实是file-loader的功能
@@ -70,6 +70,14 @@ module.exports = {
         }]
     }
 }
+
+
+// babel 插件 处理js代码
+// npm i babel-loader @babel/core @babel/preser-env webpack -D
+// 如果需要支持更高的语法，可以继续安装插件
+// npm i @babel/plugin-proposal-class-properties -D  也可自己去babel官网自己找插件安装
+
+
 
 // npm i url-loader url-loader是对'file-loader的包装，然后必须装file-loader 会把图片变成base64格式 还会改变你的名字，生成一个唯一标识
 

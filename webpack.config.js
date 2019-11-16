@@ -72,8 +72,8 @@ module.exports = {
             use: {
                 loader: 'file-loader',
                 options: {
-                    presets: ['@babel/env'] //这个必须配置
-
+                    presets: ['@babel/env'], //这个必须配置
+                    plugins: ['@babel/plugin-proposal-class-properties']
                 }
             }
         }]
@@ -83,8 +83,9 @@ module.exports = {
 
 // babel 插件 处理js代码
 // npm i babel-loader @babel/core @babel/preser-env webpack -D
-// 如果需要支持更高的语法，可以继续安装插件
-// npm i @babel/plugin-proposal-class-properties -D  也可自己去babel官网自己找插件安装
+// 如果需要支持更高的语法，可以继续安装插件 比如class类
+// npm i @babel/plugin-proposal-class-properties -D  也可自己去babel官网自己找插件安装 有很多类似的包 babel已经高度模块化了
+
 
 
 

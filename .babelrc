@@ -1,0 +1,7 @@
+{
+    "presets": ["@babel/env"], //这个必须配置
+    "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-transform-runtime"
+    ]
+}

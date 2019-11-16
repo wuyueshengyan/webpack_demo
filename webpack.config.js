@@ -73,7 +73,10 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     presets: ['@babel/env'], //这个必须配置
-                    plugins: ['@babel/plugin-proposal-class-properties']
+                    plugins: [
+                        '@babel/plugin-proposal-class-properties',
+                        '@babel/plugin-transform-runtime'
+                    ]
                 }
             }
         }]
@@ -86,7 +89,16 @@ module.exports = {
 // 如果需要支持更高的语法，可以继续安装插件 比如class类
 // npm i @babel/plugin-proposal-class-properties -D  也可自己去babel官网自己找插件安装 有很多类似的包 babel已经高度模块化了
 
+// 如果使用generator，无法直接使用babel进行转换，因为会将generator转换为一个regeneratorRuntime，然后用Mark和wrap来实现generator
+// 但是由于babel并没有内置regeneratorRuntime，所以无法使用
+// regeneratorRuntime is not defined
+// 在浏览器中直接使用是没有问题的
 
+// 需要安装@babel/plugin-transform-runtime 然后和@babel/runtime
+// @babel/plugin-transform-runtime -d  开发依赖
+// @babel/runtime - s 运行依赖  会帮我们引用一个regenerator的js文件
+
+// babel官方推荐用法 .babel 避免的webpack的js文件变得庞大
 
 
 // npm i url-loader url-loader是对'file-loader的包装，然后必须装file-loader 会把图片变成base64格式 还会改变你的名字，生成一个唯一标识

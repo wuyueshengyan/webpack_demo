@@ -1,7 +1,9 @@
 // 在node里面，如果你涉及到路径的操作，一定要引入核心模块path
 const path = require('path')
-
-// 文本pack的配置文件遵循着CommonJS规范
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
+    // 文本pack的配置文件遵循着CommonJS规范
 module.exports = {
     // 决定入口文件
     entry: './src/index.js',
@@ -29,6 +31,31 @@ module.exports = {
         contentBase: './src',
 
     },
+    // clean-webpack-plugin插件作用，每次打包前帮我们自动删除之前的dist文件，后面重新生产
+    // npm i clean-webpack-plugin -D 
+    // 使用 :
+    // 1.首先导入该插件 const CleanWebpackPlugin = re quire('clean-webpack-plugin')
+    // 2.后面在plugins节点调用下这个插件的方法  new CleanWebpackPlugin()
+
+    // copy-webpack-plugin 插件作用 复制
+    // npm i copy-webpack-plugin -D
+    // 使用
+    // 1.首先导入 const CopyWebpackPlugin = require('copy-webpack-plugin') 
+
+    // BannerPlugin webpack 的内置插件，用于给打包的js文件加上版权注释信息
+    // 1.引入webpack插件
+    // const webpack = require('webpack')
+    // 2.创建插件对象
+    // new BannerPlugin('版权信息归属')
+
+
+    plugins: [
+        new CleanWebpackPlugin(),
+        new CopyPlugin([
+            { from: path.join(__dirname, 'assets'), to: 'assets' }
+        ]),
+        new BannerPlugin('版权信息归属')
+    ],
     // loder的配置
     modul: {
         // rules是规则的意思

@@ -80,7 +80,9 @@ module.exports = {
                 }
             }
         }]
-    }
+    },
+    // source map的配置
+    devtool: 'cheap-module-eval-source-map' //推荐配置 原始源代码 不会编译 不影响生产坏境 需要浏览器支持
 }
 
 
@@ -99,6 +101,15 @@ module.exports = {
 // @babel/runtime - s 运行依赖  会帮我们引用一个regenerator的js文件
 
 // babel官方推荐用法 .babel 避免的webpack的js文件变得庞大
+
+// JS是一门动态语言，在代码执行时可以随时转化为对象添加属性或方法
+// babel在看到对象调用方法时默认不会进行转换
+// includes这样的新方法，默认不会转换
+// 安装 @babel/polyfill  -s 支持es6 es7的 babel自己写的 运行依赖 
+// 在哪里使用，就需要在哪个模块引入  import '@babel/polyfill' 
+
+// source map的使用
+
 
 
 // npm i url-loader url-loader是对'file-loader的包装，然后必须装file-loader 会把图片变成base64格式 还会改变你的名字，生成一个唯一标识

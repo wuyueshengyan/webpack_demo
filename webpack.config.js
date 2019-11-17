@@ -37,7 +37,7 @@ module.exports = {
     // 1.首先导入该插件 const CleanWebpackPlugin = re quire('clean-webpack-plugin')
     // 2.后面在plugins节点调用下这个插件的方法  new CleanWebpackPlugin()
 
-    // copy-webpack-plugin 插件作用 复制
+    // copy-webpack-plugin 插件作用 复制 是一个功能性很强的图片，可以复制任何文件
     // npm i copy-webpack-plugin -D
     // 使用
     // 1.首先导入 const CopyWebpackPlugin = require('copy-webpack-plugin') 
@@ -116,7 +116,8 @@ module.exports = {
 
 // webpack高级配置
 
-// HTML中img标签的图片资源处理 html中直接使用img标签src加载图片的话，因为没有被依赖，图片将不会被打包。这个loader解决这个问题，图片会被打包，而且路径也处理妥当
+// HTML中img标签的图片资源处理 html中直接使用img标签src加载图片的话，因为没有被依赖，图片将不会被打包。
+//这个loader解决这个问题，图片会被打包，而且路径也处理妥当 ./开头  专门用来处理图片
 // 安装 npm install -S html-withimg-loader
 // 在webpack.config.js文件中添加loader
 // {
@@ -124,7 +125,7 @@ module.exports = {
 //     loader: 'html-withimg-loader'
 // }
 
-
+// 使用时，只需要在html中正常引用即可，webpack会找到对应的资源进行打包，并修改HTML中的引用路径
 
 
 // babel 插件 处理js代码

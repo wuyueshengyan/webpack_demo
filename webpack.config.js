@@ -113,6 +113,20 @@ module.exports = {
 }
 
 
+
+// webpack高级配置
+
+// HTML中img标签的图片资源处理 html中直接使用img标签src加载图片的话，因为没有被依赖，图片将不会被打包。这个loader解决这个问题，图片会被打包，而且路径也处理妥当
+// 安装 npm install -S html-withimg-loader
+// 在webpack.config.js文件中添加loader
+// {
+//     test: /\.(html|htm)$/i,
+//     loader: 'html-withimg-loader'
+// }
+
+
+
+
 // babel 插件 处理js代码
 // npm i babel-loader @babel/core @babel/preser-env webpack -D
 // 如果需要支持更高的语法，可以继续安装插件 比如class类

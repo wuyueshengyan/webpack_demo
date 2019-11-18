@@ -6,7 +6,11 @@ const webpack = require('webpack')
     // 文本pack的配置文件遵循着CommonJS规范
 module.exports = {
     // 决定入口文件
-    entry: './src/index.js',
+    // entry: './src/index.js',
+    entry: {
+        index: './src/index.js',
+        other: './src/other.js'
+    },
     output: {
         //出口path必须是一个绝对路径
         // path.resolve()解析当前相对路径的绝对路径
@@ -15,7 +19,7 @@ module.exports = {
         // path:path.jion(__dirname,'./dist/'),
 
         path: path.resolve('./dist/'),
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     // 打包
     // production 产品阶段，打包后会压缩混淆代码
@@ -50,7 +54,14 @@ module.exports = {
 
 
     plugins: [
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+            filename: 'index.html',
+            template: './src/index.html'
+        }),
+        new CleanWebpackPlugin({
+            filename: 'other.html',
+            template: './src/other.html'
+        }),
         new CopyPlugin([
             { from: path.join(__dirname, 'assets'), to: 'assets' }
         ]),

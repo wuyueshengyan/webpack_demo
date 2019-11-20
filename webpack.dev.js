@@ -1,127 +1,27 @@
 // 在node里面，如果你涉及到路径的操作，一定要引入核心模块path
-const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const webpack = require('webpack')
+// 开发阶段的配置
+const merge = require('webpack-merge')
+const baseConfig = require('./webpack.base.js')
+module.exports = merge(baseConfig, { //会返回一个新的对象
+        // 打包
+        // production 产品阶段，打包后会压缩混淆代码
+        // development 开发阶段，打包
+        mode: 'development',
+        // 开启监视模式，此时执行webpack指令进行打包回监视文件的变化自动打包
+        // watch: true
+        devServer: {
+            open: true,
+            port: 3000,
+            compress: true,
+            hot: true,
+            contentBase: './src',
+
+        },
+        // source map的配置
+        devtool: 'cheap-module-eval-source-map' //推荐配置 原始源代码 不会编译 不影响生产坏境 需要浏览器支持
+    })
     // 文本pack的配置文件遵循着CommonJS规范
-module.exports = {
-    // 决定入口文件
-    // entry: './src/index.js',
-    entry: {
-        index: './src/index.js',
-        other: './src/other.js'
-    },
-    output: {
-        //出口path必须是一个绝对路径
-        // path.resolve()解析当前相对路径的绝对路径
-        // path:path.resolve(__dirname,'./dist/'),
-        // 拼接路径
-        // path:path.jion(__dirname,'./dist/'),
 
-        path: path.resolve('./dist/'),
-        filename: '[name].js'
-    },
-    // 打包
-    // production 产品阶段，打包后会压缩混淆代码
-    // development 开发阶段，打包
-    mode: 'development',
-    // 开启监视模式，此时执行webpack指令进行打包回监视文件的变化自动打包
-    // watch: true
-    devServer: {
-        open: true,
-        port: 3000,
-        compress: true,
-        hot: true,
-        contentBase: './src',
-
-    },
-    // clean-webpack-plugin插件作用，每次打包前帮我们自动删除之前的dist文件，后面重新生产
-    // npm i clean-webpack-plugin -D 
-    // 使用 :
-    // 1.首先导入该插件 const CleanWebpackPlugin = re quire('clean-webpack-plugin')
-    // 2.后面在plugins节点调用下这个插件的方法  new CleanWebpackPlugin()
-
-    // copy-webpack-plugin 插件作用 复制 是一个功能性很强的图片，可以复制任何文件
-    // npm i copy-webpack-plugin -D
-    // 使用
-    // 1.首先导入 const CopyWebpackPlugin = require('copy-webpack-plugin') 
-
-    // BannerPlugin webpack 的内置插件，用于给打包的js文件加上版权注释信息
-    // 1.引入webpack插件
-    // const webpack = require('webpack')
-    // 2.创建插件对象
-    // new BannerPlugin('版权信息归属')
-
-
-    plugins: [
-        new CleanWebpackPlugin({
-            filename: 'index.html',
-            template: './src/index.html'
-        }),
-        new CleanWebpackPlugin({
-            filename: 'other.html',
-            template: './src/other.html'
-        }),
-        new CopyPlugin([
-            { from: path.join(__dirname, 'assets'), to: 'assets' }
-        ]),
-        new BannerPlugin('版权信息归属')
-    ],
-    // loder的配置
-    modul: {
-        // rules是规则的意思
-        rules: [{
-            test: /\.css$/,
-            // webpack读取loader时 ， 是从右到左的读取,会将css文件先交给最右侧的loader来处理
-            // loader的执行方式是从右到左以管道的方式链式调用
-            // css-loader,解析css文件
-            // style-loader,将解析出来的结果放到html中,使其生效
-            use: ['style-loader', 'css-loader'],
-        }, {
-            test: /\.less$/,
-            // 先less-loader解析less文件，再css-loader解析css文件。style-loader导入到HTML文件中
-            use: ['style-loader', 'css-loader', 'less-loader']
-        }, {
-            test: /\.s(a|c)ss$/,
-            // 编译scss的文件
-            use: ['style-loader', 'css-loader', 'sass-loader']
-        }, {
-            test: /\.(jpg | ipeg | png | bmp | gif | woff | woff2 | eot | svg |ttf)$/,
-            // 编译图片，字体图标的编译插件 npm i file-loader -d
-            use: 'file-loader'
-        }, {
-            // 也可以分开写
-            test: /\.(woff | woff2 | eot | svg |ttf)$/,
-            // 编译图片，字体图标的编译插件
-            use: 'file-loader'
-        }, {
-            test: /\.(jpg | ipeg | png | bmp | gif | woff | woff2 | eot | svg |ttf)$/,
-            // 编译图片，字体图标的编译插件 npm i file-loader -d
-            use: {
-                loader: 'url-loader', //会把你所有的图片打包在同一个目录下
-                options: {
-                    limit: 5 * 1024, //如果你的图片小于5kb，就装换为base64
-                    outputPath: 'img', //直接输入目录名字，指定输出图片的文件夹 其实是file-loader的功能
-                    name: '[name]-[hash：4].[ext]' //[name]原来的名字 [hash:4] 哈希值为4位  .[ext]原后缀名  其实是file-loader的功能
-                }
-            }
-        }, {
-            text: /\.js$/,
-            use: {
-                loader: 'file-loader',
-                options: {
-                    presets: ['@babel/env'], //这个必须配置
-                    plugins: [
-                        '@babel/plugin-proposal-class-properties',
-                        '@babel/plugin-transform-runtime'
-                    ]
-                }
-            }
-        }]
-    },
-    // source map的配置
-    devtool: 'cheap-module-eval-source-map' //推荐配置 原始源代码 不会编译 不影响生产坏境 需要浏览器支持
-}
 
 
 

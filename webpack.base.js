@@ -1,5 +1,12 @@
 // 公共配置
 
+// 两个环境下需要的公共配置
+// 入口
+// 出口
+// 插件看生产和开发坏境的需要进行配置，一般情况下都会用到
+//module也是一样，不需要管他，开发和生产都要用到
+// source map的配置不需要在生产环境
+
 // 在node里面，如果你涉及到路径的操作，一定要引入核心模块path
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -26,17 +33,19 @@ module.exports = {
     // 打包
     // production 产品阶段，打包后会压缩混淆代码
     // development 开发阶段，打包
-    mode: 'development',
+
+    // mode需要单独配置
+    // mode: 'development',
     // 开启监视模式，此时执行webpack指令进行打包回监视文件的变化自动打包
     // watch: true
-    devServer: {
-        open: true,
-        port: 3000,
-        compress: true,
-        hot: true,
-        contentBase: './src',
+    // devServer: {
+    //     open: true,
+    //     port: 3000,
+    //     compress: true,
+    //     hot: true,
+    //     contentBase: './src',
 
-    },
+    // },
     // clean-webpack-plugin插件作用，每次打包前帮我们自动删除之前的dist文件，后面重新生产
     // npm i clean-webpack-plugin -D 
     // 使用 :
@@ -54,7 +63,7 @@ module.exports = {
     // 2.创建插件对象
     // new BannerPlugin('版权信息归属')
 
-
+    // 插件看生产和开发坏境的需要进行配置，一般情况下都会用到
     plugins: [
         new CleanWebpackPlugin({
             filename: 'index.html',
@@ -70,7 +79,7 @@ module.exports = {
         new BannerPlugin('版权信息归属')
     ],
     // loder的配置
-    modul: {
+    module: {
         // rules是规则的意思
         rules: [{
             test: /\.css$/,
@@ -122,7 +131,7 @@ module.exports = {
         }]
     },
     // source map的配置
-    devtool: 'cheap-module-eval-source-map' //推荐配置 原始源代码 不会编译 不影响生产坏境 需要浏览器支持
+    // devtool: 'cheap-module-eval-source-map' //推荐配置 原始源代码 不会编译 不影响生产坏境 需要浏览器支持
 }
 
 

@@ -1,13 +1,22 @@
 // 生产坏境
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
-
-// 文本pack的配置文件遵循着CommonJS规范
+    // 引入webpack，导入环境变量
+const webpack = require('webpack')
+    // 文本pack的配置文件遵循着CommonJS规范
 module.exports = merge(baseConfig, {
     // 打包
     // production 产品阶段，打包后会压缩混淆代码
     // development 开发阶段，打包
     mode: 'production',
+    plugins: [
+        // 导入环境变量内置插件 
+        new webpack.DefinePlugin({
+            IS_DEV: 'false'
+
+            //他会自动把这里的字符串，表达式当成js执行，解析成表达式，如果想使用字符串，可以使用"'zs'"，引号套引号的方式
+        })
+    ],
     // source map的配置
     devtool: 'cheap-module-source-map' //生产坏境配置映射
 })

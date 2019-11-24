@@ -2,6 +2,11 @@
 // 开发阶段的配置
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
+
+// 定义环境变量
+// 引入webpack
+const webpack = require('webpack')
+
 module.exports = merge(baseConfig, { //会返回一个新的对象
         // 打包
         // production 产品阶段，打包后会压缩混淆代码
@@ -14,9 +19,27 @@ module.exports = merge(baseConfig, { //会返回一个新的对象
             port: 3000,
             compress: true,
             hot: true,
-            contentBase: './src',
-
+            // contentBase: './src',
+            // 开启代理解决跨域问题
+            proxy: {
+                // 'api': 'http://localhost:9999'
+                // 如果不想转发api字符的话，可以传一个对象
+                target: 'http://localhost:9999',
+                // 地址重写的意思,官方推荐写法https://www.webpackjs.com/configuration/dev-server/#devserver-proxy
+                // 转发请求时不会携带斜线api
+                pathRewrite: {
+                    '^api': ''
+                }
+            }
         },
+        plugins: [
+            // 导入环境变量内置插件 
+            new webpack.DefinePlugin({
+                IS_DEV: 'true'
+
+                //他会自动把这里的字符串，表达式当成js执行，解析成表达式，如果想使用字符串，可以使用"'zs'"，引号套引号的方式
+            })
+        ],
         // source map的配置
         devtool: 'cheap-module-eval-source-map' //推荐配置 原始源代码 不会编译 不影响生产坏境 需要浏览器支持
     })

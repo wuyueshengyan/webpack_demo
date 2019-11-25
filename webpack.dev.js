@@ -18,7 +18,7 @@ module.exports = merge(baseConfig, { //会返回一个新的对象
             open: true,
             port: 3000,
             compress: true,
-            hot: true,
+            hot: true, //开启热更新,重新编译
             // contentBase: './src',
             // 开启代理解决跨域问题
             proxy: {
